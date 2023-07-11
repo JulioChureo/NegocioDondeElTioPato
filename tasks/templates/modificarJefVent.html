@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form method="POST" class="card card-body">
+                <h1>Modificar Jefe de Venta {{jefes.rut}},{{jefes.nombre}}</h1>
+                {{error}}
+                {% csrf_token %}
+    		    {{formulario.as_p}}
+                <button class="btn btn-primary">
+                    Modificar Jefe
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

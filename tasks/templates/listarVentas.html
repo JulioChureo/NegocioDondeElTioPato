@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    th{
+        padding: 20px;
+        text-align: center;
+        border: solid black 1px;
+        background-color: aqua;
+    }
+    td{
+        text-align: center;
+        border: solid black 1px;
+        padding: 10px;
+        
+    }
+</style>
+<h1>Lista de Ventas</h1>
+{% if not lista %}
+<h1>No hay Ventas agregadas</h1>
+{% else %}
+<table style="margin: 10px">
+    <tr >
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Producto Comprado</th>
+        <th>Comprador</th>
+        <th>Total Neto</th>
+        <th>Total Iva</th>
+        <th>Accion</th>
+    </tr>
+    {% for i in lista %}
+    <tr>
+        
+        <td>{{i.id_venta}}</td>
+        <td>{{i.fecha}}</td>
+        <td>{{i.producto_comprado}}</td>
+        <td>{{i.comprador}}</td>
+        <td>{{i.total_neto}}</td>
+        <td>{{i.total_iva}}</td>
+        <td><button><a href="{% url 'modificarVenta' i.id_venta %}">Modificar</a></button>
+        
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

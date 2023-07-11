@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center display-1">Negocio Donde el tio Pato</h1>
+{% if user.is_authenticated %}
+<main class="container py-5">
+    <section class="card card-body">
+        <p>
+            Te damos la bienvenida a al negocio del tio pato, aqui podras gestionar los datos relacionados a las
+            compras, ventas, clientes y muchos mas.
+        <h3><strong>Recuerda, cada dato que quieras ingresar o actualizar, debe ser autorizado por el supervisor a
+                cargo, o en su defecto el dueño de la tienda.</strong></h3>
+        </p>
+
+    </section>
+</main>
+{% else %}
+{% endif %}
+{% endblock %}

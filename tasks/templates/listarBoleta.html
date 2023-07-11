@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<style>
+    th {
+        padding: 20px;
+        text-align: center;
+        border: solid black 1px;
+        background-color: aqua;
+    }
+
+    td {
+        text-align: center;
+        border: solid black 1px;
+    }
+</style>
+<h1>Lista de Boletas</h1>
+{% if not lista %}
+<h1>No hay boletas agregadas</h1>
+{% else %}
+<table style="margin: 10px">
+    <tr>
+        <th>ID</th>
+        <th>Venta Asociada</th>
+        <th>Accion</th>
+    </tr>
+    {% for i in lista%}
+    <tr>
+
+        <td>{{i.id_boleta}}</td>
+        <td>{{i.venta_asociada}}</td>
+        <td><button>Ver Información</button>
+        </td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

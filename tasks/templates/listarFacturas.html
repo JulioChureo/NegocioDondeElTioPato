@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    th{
+        padding: 20px;
+        text-align: center;
+        border: solid black 1px;
+        background-color: aqua;
+    }
+    td{
+        text-align: center;
+        border: solid black 1px;
+    }
+</style>
+<h1>Lista de Facturas</h1>
+{% if not lista %}
+<h1>No hay facturas agregadas</h1>
+{% else %}
+<table style="margin: 10px">
+    <tr >
+        <th>ID</th>
+        <th>Nombre Empresa</th>
+        <th>Razon Solcial</th>
+        <th>Rut Empresa</th>
+        <th>Fecha</th>
+        <th>Producto Comprado</th>
+        <th>Vendedor Asociado</th>
+        <th>Total Neto</th>
+        <th>Total Iva</th>
+        <th>Accion</th>
+    </tr>
+    {% for i in lista%}
+    <tr>
+        
+        <td>{{i.id_factura}}</td>
+        <td>{{i.nombre_empresa}}</td>
+        <td>{{i.razon_social}}</td>
+        <td>{{i.rut_empresa}}</td>
+        <td>{{i.fecha}}</td>
+        <td>{{i.producto}}</td>
+        <td>{{i.vendedor_asociado}}</td>
+        <td>{{i.total_neto}}</td>
+        <td>{{i.total_iva}}</td>
+        <td><button>Ver Información</button></td>
+        
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

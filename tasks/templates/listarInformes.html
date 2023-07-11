@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    th {
+        padding: 20px;
+        text-align: center;
+        border: solid black 1px;
+        background-color: aqua;
+    }
+
+    td {
+        text-align: center;
+        border: solid black 1px;
+    }
+</style>
+<h1>Lista de Informes</h1>
+{% if not lista %}
+<h1>No hay informes registrados</h1>
+{% else %}
+<table style="margin: 10px">
+    <tr>
+        <th>ID</th>
+        <th>Fecha de solicitud</th>
+        <th>Solicitado Por</th>
+        <th>Caja Solicitda</th>
+    </tr>
+    {% for i in lista%}
+    <tr>
+        
+        <td>{{i.id_informe}}</td>
+        <td>{{i.fecha_solicitud}}</td>
+        <td>{{i.solocitado_por}}</td>
+        <td>{{i.caja_solicitada}}</td>
+        
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

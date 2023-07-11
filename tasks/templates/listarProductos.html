@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% block js %}
+    <script>
+        function TomarElemento(id){
+            Swal.fire({
+                'title':'Estas Seguro',
+                "text":"Esta acción no se puede deshacer",
+                "icon":"warning",
+                "showCancelButton":true,
+                "cancelButtonText":"No, Cancelar",
+                "confirmButtonText":"Si, Eliminar",
+                "confirmButtonColor":"red"
+            })
+            .then(function(result){
+                if (result.isConfirmed){
+                    window.location.href='/listarProductos/'+id
+                }
+            })
+        }
+    </script>
+{% endblock%}
+<style>
+    th{
+        padding: 20px;
+        text-align: center;
+        border: solid black 1px;
+        background-color: aqua;
+    }
+    td{
+        text-align: center;
+        border: solid black 1px;
+        padding: 10px;
+        
+    }
+</style>
+<h1>Lista de Productos</h1>
+{% if not lista %}
+<h1>No hay productos agregados</h1>
+{% else %}
+<table style="margin: 10px">
+    <tr >
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Categoria</th>
+        <th>Proveedor</th>
+        <th>Accion</th>
+    </tr>
+    {% for i in lista%}
+    <tr>
+        
+        <td>{{i.id_producto}}</td>
+        <td>{{i.nombre_producto}}</td>
+        <td>{{i.descripcion}}</td>
+        <td>{{i.precio}}</td>
+        <td>{{i.stock}}</td>
+        <td>{{i.categoria}}</td>
+        <td>{{i.proveedor}}</td>
+        <td><a class="btn btn-primary" href="{% url 'modificarProducto' i.id_producto %}">Modificar</a>
+            <a class="btn btn-danger" onclick="TomarElemento({{i.id_producto}})" href="#">Borrar producto</a>            
+          
+        </td>
+        
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% block js %}
+    <script>
+        function TomarElemento(id){
+            Swal.fire({
+                'title':'Estas Seguro',
+                "text":"Esta acción no se puede deshacer",
+                "icon":"warning",
+                "showCancelButton":true,
+                "cancelButtonText":"No, Cancelar",
+                "confirmButtonText":"Si, Eliminar",
+                "confirmButtonColor":"red"
+            })
+            .then(function(result){
+                if (result.isConfirmed){
+                    window.location.href='/listarVendedores/'+id
+                }
+            })
+        }
+    </script>
+{% endblock%}
+<style>
+    th {
+        padding: 20px;
+        text-align: center;
+        border: solid black 1px;
+        background-color: aqua;
+    }
+
+    td {
+        text-align: center;
+        border: solid black 1px;
+    }
+</style>
+<h1>Lista de Vendedores</h1>
+{% if not lista %}
+<h1>No hay vendedores agregados</h1>
+{% else %}
+<table style="margin: 10px">
+    <tr>
+        <th>ID</th>
+        <th>Rut</th>
+        <th>Nombre</th>
+        <th>Fecha de ingreso</th>
+        <th>Accion</th>
+    </tr>
+    {% for i in lista%}
+    <tr>
+
+        <td>{{i.id_vendedor}}</td>
+        <td>{{i.rut_vendedor}}</td>
+        <td>{{i.nombre_vendedor}}</td>
+        <td>{{i.fecha_Ingreso}}</td>
+        <td><a class="btn btn-primary" href="{% url 'modificarVendedor' i.id_vendedor %}">Modificar</a>
+            <a class="btn btn-danger" onclick="TomarElemento({{i.id_vendedor}})" href="#">Borrar Vendedor</a>            
+        </td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}
